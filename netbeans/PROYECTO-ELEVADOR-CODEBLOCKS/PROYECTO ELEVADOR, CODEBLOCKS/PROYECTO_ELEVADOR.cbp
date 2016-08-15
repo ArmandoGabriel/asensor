@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="PROYECTO_ELEVADOR" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/PROYECTO_ELEVADOR" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/PROYECTO_ELEVADOR" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="SimuladorElevador.cpp" />
+		<Unit filename="bitacora.cpp" />
+		<Unit filename="bitacora.h" />
+		<Unit filename="botonElevador.cpp" />
+		<Unit filename="botonElevador.h" />
+		<Unit filename="botonPiso.cpp" />
+		<Unit filename="botonPiso.h" />
+		<Unit filename="campana.cpp" />
+		<Unit filename="campana.h" />
+		<Unit filename="edificio.cpp" />
+		<Unit filename="edificio.h" />
+		<Unit filename="elevador.cpp" />
+		<Unit filename="elevador.h" />
+		<Unit filename="luz.cpp" />
+		<Unit filename="luz.h" />
+		<Unit filename="persona.cpp" />
+		<Unit filename="persona.h" />
+		<Unit filename="piso.cpp" />
+		<Unit filename="piso.h" />
+		<Unit filename="puerta.cpp" />
+		<Unit filename="puerta.h" />
+		<Unit filename="reloj.cpp" />
+		<Unit filename="reloj.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

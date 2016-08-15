@@ -1,0 +1,189 @@
+# depslib dependency file v1.0
+1045895570 source:c:\prog ii\proyecto_elevador\fuentes\bitacora.cpp
+	<iostream>
+	<new>
+	<cstdlib>
+	<ctime>
+	"bitacora.h"
+	"piso.h"
+	"persona.h"
+
+1045894518 c:\prog ii\proyecto_elevador\fuentes\bitacora.h
+
+1045899800 c:\prog ii\proyecto_elevador\fuentes\piso.h
+	"botonPiso.h"
+	"luz.h"
+
+1045897470 c:\prog ii\proyecto_elevador\fuentes\botonpiso.h
+
+1045896910 c:\prog ii\proyecto_elevador\fuentes\luz.h
+
+1045900778 c:\prog ii\proyecto_elevador\fuentes\persona.h
+
+1469494255 source:c:\prog ii\proyecto_elevador\fuentes\botonelevador.cpp
+	<iostream>
+	"botonElevador.h"
+	"elevador.h"
+
+1045897322 c:\prog ii\proyecto_elevador\fuentes\botonelevador.h
+
+1045898018 c:\prog ii\proyecto_elevador\fuentes\elevador.h
+	"botonElevador.h"
+	"puerta.h"
+	"campana.h"
+
+1045897154 c:\prog ii\proyecto_elevador\fuentes\puerta.h
+
+1045896632 c:\prog ii\proyecto_elevador\fuentes\campana.h
+
+1045897594 source:c:\prog ii\proyecto_elevador\fuentes\botonpiso.cpp
+	<iostream>
+	"botonPiso.h"
+	"elevador.h"
+
+1045896820 source:c:\prog ii\proyecto_elevador\fuentes\campana.cpp
+	<iostream>
+	"campana.h"
+
+1045893050 source:c:\prog ii\proyecto_elevador\fuentes\edificio.cpp
+	<iostream>
+	"edificio.h"
+
+1469502599 c:\prog ii\proyecto_elevador\fuentes\edificio.h
+	"elevador.h"
+	"piso.h"
+	"reloj.h"
+	"bitacora.h"
+
+1043200538 c:\prog ii\proyecto_elevador\fuentes\reloj.h
+
+1469484649 source:c:\prog ii\proyecto_elevador\fuentes\elevador.cpp
+	<iostream>
+	"elevador.h"
+	"persona.h"
+	"piso.h"
+
+1045897044 source:c:\prog ii\proyecto_elevador\fuentes\luz.cpp
+	<iostream>
+	"luz.h"
+
+1045901144 source:c:\prog ii\proyecto_elevador\fuentes\persona.cpp
+	<iostream>
+	"persona.h"
+	"piso.h"
+	"elevador.h"
+
+1045900648 source:c:\prog ii\proyecto_elevador\fuentes\piso.cpp
+	<iostream>
+	"piso.h"
+	"persona.h"
+	"elevador.h"
+	"puerta.h"
+
+1045897224 source:c:\prog ii\proyecto_elevador\fuentes\puerta.cpp
+	<iostream>
+	"puerta.h"
+	"persona.h"
+	"piso.h"
+	"elevador.h"
+
+1045893310 source:c:\prog ii\proyecto_elevador\fuentes\reloj.cpp
+	<iostream>
+	"reloj.h"
+
+1045895570 source:c:\prog ii\proyecto_elevador\bitacora.cpp
+	<iostream>
+	<new>
+	<cstdlib>
+	<ctime>
+	"bitacora.h"
+	"piso.h"
+	"persona.h"
+
+1045894518 c:\prog ii\proyecto_elevador\bitacora.h
+
+1045899800 c:\prog ii\proyecto_elevador\piso.h
+	"botonPiso.h"
+	"luz.h"
+
+1045897470 c:\prog ii\proyecto_elevador\botonpiso.h
+
+1045896910 c:\prog ii\proyecto_elevador\luz.h
+
+1045900778 c:\prog ii\proyecto_elevador\persona.h
+
+1469494255 source:c:\prog ii\proyecto_elevador\botonelevador.cpp
+	<iostream>
+	"botonElevador.h"
+	"elevador.h"
+
+1045897322 c:\prog ii\proyecto_elevador\botonelevador.h
+
+1045898018 c:\prog ii\proyecto_elevador\elevador.h
+	"botonElevador.h"
+	"puerta.h"
+	"campana.h"
+
+1045897154 c:\prog ii\proyecto_elevador\puerta.h
+
+1045896632 c:\prog ii\proyecto_elevador\campana.h
+
+1045897594 source:c:\prog ii\proyecto_elevador\botonpiso.cpp
+	<iostream>
+	"botonPiso.h"
+	"elevador.h"
+
+1045896820 source:c:\prog ii\proyecto_elevador\campana.cpp
+	<iostream>
+	"campana.h"
+
+1045893050 source:c:\prog ii\proyecto_elevador\edificio.cpp
+	<iostream>
+	"edificio.h"
+
+1469502599 c:\prog ii\proyecto_elevador\edificio.h
+	"elevador.h"
+	"piso.h"
+	"reloj.h"
+	"bitacora.h"
+
+1043200538 c:\prog ii\proyecto_elevador\reloj.h
+
+1469484649 source:c:\prog ii\proyecto_elevador\elevador.cpp
+	<iostream>
+	"elevador.h"
+	"persona.h"
+	"piso.h"
+
+1045897044 source:c:\prog ii\proyecto_elevador\luz.cpp
+	<iostream>
+	"luz.h"
+
+1045901144 source:c:\prog ii\proyecto_elevador\persona.cpp
+	<iostream>
+	"persona.h"
+	"piso.h"
+	"elevador.h"
+
+1045900648 source:c:\prog ii\proyecto_elevador\piso.cpp
+	<iostream>
+	"piso.h"
+	"persona.h"
+	"elevador.h"
+	"puerta.h"
+
+1045897224 source:c:\prog ii\proyecto_elevador\puerta.cpp
+	<iostream>
+	"puerta.h"
+	"persona.h"
+	"piso.h"
+	"elevador.h"
+
+1045893310 source:c:\prog ii\proyecto_elevador\reloj.cpp
+	<iostream>
+	"reloj.h"
+
+1045892280 source:c:\prog ii\proyecto_elevador\simuladorelevador.cpp
+	<iostream>
+	"edificio.h"
+
