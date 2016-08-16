@@ -2,21 +2,21 @@ package entidades;
 
 import java.util.*;
 
-public class botonPiso
+public class BotonPiso
 {
        public  int numeroPiso; // n�mero de piso del bot�n
    public boolean presionado; // estado del bot�n
 
    // referencia al elevador utilizado para llamar
    // al elevado al piso
-    elevador refElevador  = new elevador();
+    Elevador refElevador  = new Elevador();
 
-    public botonPiso() {
+    public BotonPiso() {
     }
 
 // constructor
     
-	public botonPiso(int piso, elevador manipulaElevador)
+	public BotonPiso(int piso, Elevador manipulaElevador)
 	{
 		this.numeroPiso = piso;
 		this.presionado = false;
@@ -73,11 +73,11 @@ public class botonPiso
         this.presionado = presionado;
     }
 
-    public elevador getRefElevador() {
+    public Elevador getRefElevador() {
         return refElevador;
     }
 
-    public void setRefElevador(elevador refElevador) {
+    public void setRefElevador(Elevador refElevador) {
         this.refElevador = refElevador;
     }
 

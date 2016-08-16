@@ -3,271 +3,233 @@ package entidades;
 import java.util.*;
 import elevador.*;
 
-public class elevador
-{
-       // constantes est�ticas que representan el tiempo requerido para viajar
-   // entre los pisos y las direcciones del elevador
-   public final  int TIEMPO_VIAJE_ELEVADOR = 5;
-   public final  int ARRIBA = 0;
-   public  final int ABAJO = 1;
+public class Elevador {
+    // constantes est�ticas que representan el tiempo requerido para viajar
+    // entre los pisos y las direcciones del elevador
 
-   // datos miembros
-   public int tiempoActualRelojDelEdificio; // tiempo actual
-   public boolean enMovimiento; // estado del elevador
-   public int direccion; // direcci�n actual
-   public int pisoActual; // ubicaci�n actual
-   public int tiempoLlegada; // tiempo de llegada al piso
-   public boolean piso1NecesitaServicio; // bandera de servicio del piso1
-   public boolean piso2NecesitaServicio; // bandera de servicio del piso1
+    public final int TIEMPO_VIAJE_ELEVADOR = 5;
+    public final int ARRIBA = 0;
+    public final int ABAJO = 1;
 
-    piso refPiso1 = new piso(); // referencia al piso 1
-   piso refPiso2 = new piso(); // referencia al piso 2
+    // datos miembros
+    public int tiempoActualRelojDelEdificio; // tiempo actual
+    public boolean enMovimiento; // estado del elevador
+    public int direccion; // direcci�n actual
+    public int pisoActual; // ubicaci�n actual
+    public int tiempoLlegada; // tiempo de llegada al piso
+    public boolean piso1NecesitaServicio; // bandera de servicio del piso1
+    public boolean piso2NecesitaServicio; // bandera de servicio del piso1
+
+    Piso refPiso1 = new Piso(); // referencia al piso 1
+    Piso refPiso2 = new Piso(); // referencia al piso 2
 //botonElevador botonElevador = new botonElevador ();
-   persona ptrPasajero = new persona();
+    Persona ptrPasajero = new Persona();
 
-   puerta puerta = new puerta(); // objeto puerta
-   campana campana = new campana(); // objeto campana
- //  botonElevador botonElevador = new botonElevador();
+    Puerta puerta = new Puerta(); // objeto puerta
+    Campana campana = new Campana(); // objeto campana
+    //  botonElevador botonElevador = new botonElevador();
 // constructor
-    botonElevador botonElevador;
+    BotonElevador botonElevador;
 
-    public elevador() {
-        
+    public Elevador() {
+
     }
 
-  
-   
-   
-   public elevador(piso primerPiso, piso segundoPiso)
-   {
-	 botonElevador botonElevador = new botonElevador();
-	   this.tiempoActualRelojDelEdificio = 0;
-	   this.enMovimiento = false;
-	   this.direccion = ARRIBA;
-	   pisoActual = piso.PISO1;
-	   this.tiempoLlegada = 0;
-	   this.piso1NecesitaServicio = false;
-	   this.piso2NecesitaServicio = false;
-	    refPiso1 = primerPiso;
-	    refPiso2 = segundoPiso;
-	   this.ptrPasajero = new persona();
-	  System.out.print("elevador construido");
-	  System.out.print("\n");
+    public Elevador(Piso primerPiso, Piso segundoPiso) {
+        BotonElevador botonElevador = new BotonElevador();
+        this.tiempoActualRelojDelEdificio = 0;
+        this.enMovimiento = false;
+        this.direccion = ARRIBA;
+        pisoActual = Piso.PISO1;
+        this.tiempoLlegada = 0;
+        this.piso1NecesitaServicio = false;
+        this.piso2NecesitaServicio = false;
+        refPiso1 = primerPiso;
+        refPiso2 = segundoPiso;
+        this.ptrPasajero = new Persona();
+        System.out.print("elevador construido");
+        System.out.print("\n");
 
-   } // fin del constructor Elevador
+    } // fin del constructor Elevador
 
-  
+    // solicita servicio del elevador
+    public void llamaElevador(int piso) {
 
+        // establece la bandera de servicio apropiada
+        if (piso == pisoActual) {
+            piso1NecesitaServicio = true;
+        } else {
+            piso2NecesitaServicio = true;
+        }
 
+    } // fin de la funci�n llamaElevador
 
+    // se prepara para abandonar el piso
+    public final void preparaParaPartir(boolean parte) {
+        // obtiene la referencia al piso actual
+        Piso estePiso = pisoActual == Piso.PISO1 ? refPiso1 : refPiso2;
 
-   // solicita servicio del elevador
-   public  void llamaElevador(int piso)
-   {
-       
-	  // establece la bandera de servicio apropiada
-	  if(piso == pisoActual){
-              piso1NecesitaServicio = true;
-          }
-          else {
-                piso2NecesitaServicio = true;
-          }
+        // notifica al piso que el elevador puede partir
+        estePiso.elevadorParte();
 
-   } // fin de la funci�n llamaElevador
+        puerta.cierraPuerta(estePiso);
 
-   // se prepara para abandonar el piso
-   public final void preparaParaPartir(boolean parte)
-   {
-	  // obtiene la referencia al piso actual
-	  piso estePiso = pisoActual == piso.PISO1 ? refPiso1 : refPiso2;
+        if (parte) // parte, si es necesario
+        {
+            mover();
+        }
 
-	  // notifica al piso que el elevador puede partir
-	  estePiso.elevadorParte();
+    } // fin de la funci�n preparaParaPartir
 
-	  puerta.cierraPuerta(estePiso);
+    // da tiempo al elevador
+    public void tiempoProceso(int tiempo) {
+        tiempoActualRelojDelEdificio = tiempo;
 
-	  if (parte) // parte, si es necesario
-	  {
-		 mover();
-	  }
+        if (enMovimiento) // elevador en movimiento
+        {
+            procesaPosibleLlegada();
+        } else // elevador detenido
+        {
+            procesaPosiblePartida();
+        }
 
-   } // fin de la funci�n preparaParaPartir
+        if (!enMovimiento) {
+            System.out.print("el elevador descansa en el piso ");
+            System.out.print(pisoActual);
+            System.out.print("\n");
+        }
 
-   // da tiempo al elevador
-   public  void tiempoProceso(int tiempo)
-   {
-	  tiempoActualRelojDelEdificio = tiempo;
+    } // fin de la funci�n tiempoProceso
 
-	  if (enMovimiento) // elevador en movimiento
-	  {
-		 procesaPosibleLlegada();
-	  }
+    // acepta un pasajero
+    public void pasajeroEntra(Persona ptrPersona) {
+        // el pasajero aborda
+        ptrPasajero = ptrPersona;
 
-	  else // elevador detenido
-	  {
-		 procesaPosiblePartida();
-	  }
+        System.out.print("persona ");
+        System.out.print(ptrPasajero.obtieneID());
+        System.out.print(" entra al elevador desde el piso ");
+        System.out.print(pisoActual);
+        System.out.print("\n");
 
-	  if (!enMovimiento)
-	  {
-		 System.out.print("el elevador descansa en el piso ");
-		 System.out.print(pisoActual);
-		 System.out.print("\n");
-	  }
+    } // fin de la funci�n pasajeroEntra
 
-   } // fin de la funci�n tiempoProceso
+    // notifica al elevador que el pasajero va a salir
+    public void pasajeroSale() {
+        ptrPasajero = null;
 
-   // acepta un pasajero
-   public void pasajeroEntra( persona ptrPersona)
-   {
-	  // el pasajero aborda
-	  ptrPasajero = ptrPersona;
+    } // fin de la funci�n pasajeroSale
 
-	  System.out.print("persona ");
-	  System.out.print(ptrPasajero.obtieneID());
-	  System.out.print(" entra al elevador desde el piso ");
-	  System.out.print(pisoActual);
-	  System.out.print("\n");
+    // objeto p�blico accesible al c�digo cliente
+    // con acceso al objeto Elevador
+    //public botonElevador botonElevador = new botonElevador();
+    // funciones de utilidad
+    // cuando el elevador se encuentra en movimiento, determina si se debe detener
+    private void procesaPosibleLlegada() {
+        // si el elevador llega al piso de destino
+        if (tiempoActualRelojDelEdificio == tiempoLlegada) {
 
-   } // fin de la funci�n pasajeroEntra
+            pisoActual = (pisoActual == Piso.PISO1 ? Piso.PISO2 : Piso.PISO1); // actualiza el piso actual
 
-   // notifica al elevador que el pasajero va a salir
-   public  void pasajeroSale()
-   {
-	  ptrPasajero = null;
+            direccion = (pisoActual == Piso.PISO1 ? ARRIBA : ABAJO); // actualiza direcci�n
 
-   } // fin de la funci�n pasajeroSale
+            System.out.print("el elevador llega al piso ");
+            System.out.print(pisoActual);
+            System.out.print("\n");
 
-   // objeto p�blico accesible al c�digo cliente
-   // con acceso al objeto Elevador
-   //public botonElevador botonElevador = new botonElevador();
+            // procesa la llegada a pisoActual
+            llegaAlPiso(pisoActual == Piso.PISO1 ? refPiso1 : refPiso2);
 
+            return;
 
-   // funciones de utilidad
+        } // fin de if
 
-   // cuando el elevador se encuentra en movimiento, determina si se debe detener
-   private void procesaPosibleLlegada()
-   {
-	  // si el elevador llega al piso de destino
-	  if (tiempoActualRelojDelEdificio == tiempoLlegada)
-	  {
+        // el elevador sigue en movimiento
+        System.out.print("elevador en movimiento ");
+        System.out.print((direccion == ARRIBA ? "arriba" : "abajo"));
+        System.out.print("\n");
 
-		 pisoActual = (pisoActual == piso.PISO1 ? piso.PISO2 : piso.PISO1); // actualiza el piso actual
+    } // fin de la funci�n procesaPosibleLlegada
 
-		 direccion = (pisoActual == piso.PISO1 ? ARRIBA : ABAJO); // actualiza direcci�n
+    // determina si el elevador debe moverse
+    private void procesaPosiblePartida() {
+        // �Este piso necesita servicio?
+        boolean pisoActualNecesitaServicio = pisoActual == Piso.PISO1 ? piso1NecesitaServicio : piso2NecesitaServicio;
 
-		 System.out.print("el elevador llega al piso ");
-		 System.out.print(pisoActual);
-		 System.out.print("\n");
+        // �el otro piso necesita servicio?
+        boolean otroPisoNecesitaServicio = pisoActual == Piso.PISO1 ? piso2NecesitaServicio : piso1NecesitaServicio;
 
-		 // procesa la llegada a pisoActual
-		 llegaAlPiso(pisoActual == piso.PISO1 ? refPiso1 : refPiso2);
+        // servicio en este piso (si es necesario)
+        if (pisoActualNecesitaServicio) {
+            llegaAlPiso(pisoActual == Piso.PISO1 ? refPiso1 : refPiso2);
 
-		 return;
+            return;
+        }
 
-	  } // fin de if
+        // servicio en el otro piso (si es necesario)
+        if (otroPisoNecesitaServicio) {
+            preparaParaPartir(true);
+        }
 
-	  // el elevador sigue en movimiento
-	  System.out.print("elevador en movimiento ");
-	  System.out.print((direccion == ARRIBA  ? "arriba" : "abajo"));
-	  System.out.print("\n");
+    } // fin de la funci�n procesaPosiblePartida
 
-   } // fin de la funci�n procesaPosibleLlegada
+    // llega a un piso en particular
+    private void llegaAlPiso(Piso llegaAlPiso) {
+        enMovimiento = false; // restablece el estado
+        BotonElevador botonElevador = new BotonElevador();
+        System.out.print("el elevador restablece su boton");
+        System.out.print("\n");
+        botonElevador.restableceBoton();
 
-   // determina si el elevador debe moverse
-   private void procesaPosiblePartida()
-   {
-	  // �Este piso necesita servicio?
-	  boolean pisoActualNecesitaServicio = pisoActual == piso.PISO1 ? piso1NecesitaServicio : piso2NecesitaServicio;
+        campana.suenaCampana();
 
-	  // �el otro piso necesita servicio?
-	  boolean otroPisoNecesitaServicio = pisoActual == piso.PISO1 ? piso2NecesitaServicio : piso1NecesitaServicio;
+        // notifica al piso que el elevador lleg�
+        Persona ptrPisoPersona = llegaAlPiso.llegaElevador();
 
-	  // servicio en este piso (si es necesario)
-	  if (pisoActualNecesitaServicio)
-	  {
-		 llegaAlPiso(pisoActual == piso.PISO1 ? refPiso1 : refPiso2);
+        puerta.abrePuerta(ptrPasajero, ptrPisoPersona, llegaAlPiso, this);
 
-		 return;
-	  }
+        // �este piso necesita servicio?
+        boolean pisoActualNecesitaServicio = pisoActual == Piso.PISO1 ? piso1NecesitaServicio : piso2NecesitaServicio;
 
-	  // servicio en el otro piso (si es necesario)
-	  if (otroPisoNecesitaServicio)
-	  {
-		 preparaParaPartir(true);
-	  }
+        // �el otro piso necesita servicio?
+        boolean otroPisoNecesitaServicio = pisoActual == Piso.PISO1 ? piso2NecesitaServicio : piso2NecesitaServicio;
 
-   } // fin de la funci�n procesaPosiblePartida
+        // si este piso no necesita servicio
+        // se prepara para partir hacia el otro piso
+        if (!pisoActualNecesitaServicio) {
+            preparaParaPartir(otroPisoNecesitaServicio);
+        } else // de lo contrario, restablece la bandera de servicio
+         if (pisoActual == Piso.PISO1) {
+                piso1NecesitaServicio = false;
+            } else {
+                piso2NecesitaServicio = false;
 
-   // llega a un piso en particular
-   private void llegaAlPiso(piso llegaAlPiso)
-   {
-	  enMovimiento = false; // restablece el estado
-botonElevador botonElevador = new botonElevador();
-	  System.out.print("el elevador restablece su boton");
-	  System.out.print("\n");
-	  botonElevador.restableceBoton();
+            }
 
-	  campana.suenaCampana();
+    } // fin de la funci�n llegaAlPiso
 
-	  // notifica al piso que el elevador lleg�
-	  persona ptrPisoPersona = llegaAlPiso.llegaElevador();
+    // va al otro piso
+    private void mover() {
+        enMovimiento = true; // cambiar estado
 
-	  puerta.abrePuerta(ptrPasajero, ptrPisoPersona, llegaAlPiso, this);
+        // programa tiempo llegada
+        tiempoLlegada = tiempoActualRelojDelEdificio + TIEMPO_VIAJE_ELEVADOR;
 
-	  // �este piso necesita servicio?
-	  boolean pisoActualNecesitaServicio = pisoActual == piso.PISO1 ? piso1NecesitaServicio : piso2NecesitaServicio;
+        System.out.print("el elevador comienza a moverse ");
+        System.out.print((direccion == ABAJO ? "abajo " : "arriba "));
+        System.out.print("al piso ");
+        System.out.print((direccion == ABAJO ? '1' : '2'));
+        System.out.print(" (llega a tiempo ");
+        System.out.print(tiempoLlegada);
+        System.out.print(')');
+        System.out.print("\n");
 
-	  // �el otro piso necesita servicio?
-	  boolean otroPisoNecesitaServicio = pisoActual == piso.PISO1 ? piso2NecesitaServicio : piso2NecesitaServicio;
+    } // fin de la funci�n mueve
 
-	  // si este piso no necesita servicio
-	  // se prepara para partir hacia el otro piso
-	  if (!pisoActualNecesitaServicio)
-	  {
-		 preparaParaPartir(otroPisoNecesitaServicio);
-	  }
-
-	  else // de lo contrario, restablece la bandera de servicio
-	  {
-		 if(pisoActual == piso.PISO1)
-                 {piso1NecesitaServicio = false;} 
-                 else
-                 {piso2NecesitaServicio = false;
-                 
-                 }
-	  }
-
-   } // fin de la funci�n llegaAlPiso
-
-   // va al otro piso
-   private void mover()
-   {
-	  enMovimiento = true; // cambiar estado
-
-	  // programa tiempo llegada
-	  tiempoLlegada = tiempoActualRelojDelEdificio + TIEMPO_VIAJE_ELEVADOR;
-
-	  System.out.print("el elevador comienza a moverse ");
-	  System.out.print((direccion == ABAJO ? "abajo " : "arriba "));
-	  System.out.print("al piso ");
-	  System.out.print((direccion == ABAJO  ? '1' : '2'));
-	  System.out.print(" (llega a tiempo ");
-	  System.out.print(tiempoLlegada);
-	  System.out.print(')');
-	  System.out.print("\n");
-
-   } // fin de la funci�n mueve
-
-   // constantes est�ticas que representan el tiempo requerido para viajar
-   // entre los pisos y las direcciones del elevador
-
+    // constantes est�ticas que representan el tiempo requerido para viajar
+    // entre los pisos y las direcciones del elevador
 /////////////////////////////////////////////////////////////////
-   
-   
-   
-   ///////////////////////////////////////////////////////////
-
+    ///////////////////////////////////////////////////////////
     public int getTiempoActualRelojDelEdificio() {
         return tiempoActualRelojDelEdificio;
     }
@@ -324,45 +286,44 @@ botonElevador botonElevador = new botonElevador();
         this.piso2NecesitaServicio = piso2NecesitaServicio;
     }
 
-    public piso getRefPiso1() {
+    public Piso getRefPiso1() {
         return refPiso1;
     }
 
-    public void setRefPiso1(piso refPiso1) {
+    public void setRefPiso1(Piso refPiso1) {
         this.refPiso1 = refPiso1;
     }
 
-    public piso getRefPiso2() {
+    public Piso getRefPiso2() {
         return refPiso2;
     }
 
-    public void setRefPiso2(piso refPiso2) {
+    public void setRefPiso2(Piso refPiso2) {
         this.refPiso2 = refPiso2;
     }
 
-    public persona getPtrPasajero() {
+    public Persona getPtrPasajero() {
         return ptrPasajero;
     }
 
-    public void setPtrPasajero(persona ptrPasajero) {
+    public void setPtrPasajero(Persona ptrPasajero) {
         this.ptrPasajero = ptrPasajero;
     }
 
-    public puerta getPuerta() {
+    public Puerta getPuerta() {
         return puerta;
     }
 
-    public void setPuerta(puerta puerta) {
+    public void setPuerta(Puerta puerta) {
         this.puerta = puerta;
     }
 
-    public campana getCampana() {
+    public Campana getCampana() {
         return campana;
     }
 
-    public void setCampana(campana campana) {
+    public void setCampana(Campana campana) {
         this.campana = campana;
     }
-
 
 } // fin de la clase Elevador

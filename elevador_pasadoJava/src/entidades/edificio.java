@@ -3,37 +3,41 @@ package entidades;
 import java.io.IOException;
 import java.util.*;
 
-public class edificio {
+public class Edificio {
 
     /////////////////////////////////////////////////
-    piso PISO1 = new piso(); // objeto piso1
-    piso PISO2 = new piso(); // objeto piso2
-/////////////////////////////////////////////////
-    elevador elevador = new elevador(); // objeto elevador
-    reloj reloj = new reloj(); // objeto  reloj
-    bitacora bitacora = new bitacora();
+    private Piso piso1;  // objeto piso1
+    private Piso piso2; // objeto piso2
+    private Elevador elevador;// objeto elevador
+    private Reloj reloj;// objeto  reloj
+    private Bitacora bitacora;
     // constructor
 
-    public edificio() {
-        piso piso1 = new piso(piso.PISO1, elevador);
-        piso piso2 = new piso(piso.PISO2, elevador);
-        elevador elevador = new elevador(piso1, piso2);
-        bitacora bitacora = new bitacora(piso1, piso2);
-        System.out.print("edificio construido");
-        System.out.print("\n");
+    public Edificio() {
+        System.out.println("########paso 1");
+        piso1 = new Piso(Piso.PISO1, elevador);
+        System.out.println("########paso 2");
+        piso2 = new Piso(Piso.PISO2, elevador);
+        System.out.println("########paso 3");
+        elevador = new Elevador(piso1, piso2);
+        System.out.println("########paso 4");
+        bitacora = new Bitacora(piso1, piso2);
+        System.out.println("########paso 5");
+
+        System.out.print("edificio construido\n");
 
     } // fin del constructor Edificio
 
     // funci�n para controlar la simulaci�n
     public void ejecutaSimulador(int tiempoTotal) throws IOException {
-        int tiempoActual = 0;
 
+        int tiempoActual = 0;
+        reloj = new Reloj();
         while (tiempoActual < tiempoTotal) {
+
             reloj.marcaSeg(); // incrementa el tiempo
             tiempoActual = reloj.obtieneTiempo(); // obtiene tiempo nuevo
-            System.out.print("TIEMPO: ");
-            System.out.print(tiempoActual);
-            System.out.print("\n");
+            System.out.print("TIEMPO: " + tiempoActual + "\n");
 
             // procesa la llegada de personas para tiempoActual
             bitacora.tiempoProceso(tiempoActual);
@@ -42,35 +46,10 @@ public class edificio {
             elevador.tiempoProceso(tiempoActual);
 
             // espera a que se digite una tecla, de manera que el usuario vea la salida
-            //System.in.read();
+            System.in.read();
         } // fin de while
 
     } // fin de la funci�n ejecutaSimulador
 
-/////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////
-    public elevador getElevador() {
-        return elevador;
-    }
-
-    public void setElevador(elevador elevador) {
-        this.elevador = elevador;
-    }
-
-    public reloj getReloj() {
-        return reloj;
-    }
-
-    public void setReloj(reloj reloj) {
-        this.reloj = reloj;
-    }
-
-    public bitacora getBitacora() {
-        return bitacora;
-    }
-
-    public void setBitacora(bitacora bitacora) {
-        this.bitacora = bitacora;
-    }
 
 } // fin de la clase Edificio

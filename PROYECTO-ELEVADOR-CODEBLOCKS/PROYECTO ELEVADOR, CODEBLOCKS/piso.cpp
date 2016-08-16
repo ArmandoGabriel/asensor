@@ -15,43 +15,43 @@ const int Piso::PISO1 = 1;
 const int Piso::PISO2 = 2;
 
 // constructor
-Piso::Piso(int numero, Elevador &manipulaElevador ) 
-   : botonPiso( numero, manipulaElevador ), 
-     numeroPiso( numero ), 
+Piso::Piso(int numero, Elevador &manipulaElevador ) //HASTA AQUI REVISE GABRIEL
+   : botonPiso( numero, manipulaElevador ),
+     numeroPiso( numero ),
      refElevador( manipulaElevador ),
      ptrOcupante ( 0 ),
-     luz( numeroPiso )     
-{ 
+     luz( numeroPiso )
+{
    cout << "piso " << numeroPiso << " construido" << endl;
 
 } // fin del constructor Piso
 
 // destructor
-Piso::~Piso() 
-{ 
+Piso::~Piso()
+{
    delete ptrOcupante;
    cout << "piso " << numeroPiso << " destruido" << endl;
 
 } // fin del destrcutor ~Piso
 
 // determina si el piso está ocupado
-bool Piso::estaOcupado() const 
+bool Piso::estaOcupado() const
 {
-   return ( ptrOcupante != 0 ); 
+   return ( ptrOcupante != 0 );
 
 } // fin de la función estaOcupado
 
 // devuelve el número de este piso
-int Piso::obtieneNumero() const 
-{ 
-   return numeroPiso; 
+int Piso::obtieneNumero() const
+{
+   return numeroPiso;
 
 } // fin de la función obtieneNumero
 
 // la persona llega al piso
 void Piso::llegaPersona( Persona * const ptrPersona )
-{ 
-   ptrOcupante = ptrPersona; 
+{
+   ptrOcupante = ptrPersona;
 
 } // fin de la función llegaPersona
 
@@ -64,20 +64,20 @@ Persona *Piso::llegaElevador()
    botonPiso.restableceBoton();
    luz.enciende();
 
-   return ptrOcupante;  
+   return ptrOcupante;
 
 } // fin de la función llegaElevador
 
 // indica al piso que el elevador parte
-void Piso::elevadorParte() 
-{ 
-   luz.apaga(); 
+void Piso::elevadorParte()
+{
+   luz.apaga();
 
 } // fin de la función elevadorParte
 
 // notifica al piso que la persona se va
-void Piso::personaAbordaElevador() 
-{ 
+void Piso::personaAbordaElevador()
+{
    ptrOcupante = 0;  // la persona ya no se encuentra en el piso
 
 } // fin de la función personaAbordaElevador

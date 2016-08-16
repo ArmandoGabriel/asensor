@@ -3,7 +3,7 @@ package entidades;
 
 import java.util.*;
  
-public class luz
+public class Luz
 {
     
    public boolean encendida; // verdadero si est� encendida; falso si est� apagada
@@ -11,10 +11,10 @@ public class luz
 
    // constructor
    
-      public luz(){
+      public Luz(){
           
       }
-   public luz(int numero)
+   public Luz(int numero)
    {
 	   this.encendida = false;
 	   this.numeroPiso = numero;

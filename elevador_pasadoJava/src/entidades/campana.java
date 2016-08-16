@@ -4,10 +4,10 @@ package entidades;
 import java.util.*;
 
  
-public class campana
+public class Campana
 {
    // constructor
-   public campana()
+   public Campana()
    {
 	  System.out.print("campana creada");
 	  System.out.print("\n");

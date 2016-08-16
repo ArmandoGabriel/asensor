@@ -5,13 +5,13 @@ package entidades;
 import java.util.*;
 
 
-public class reloj
+public class Reloj
 {
 
       
     
    // constructor
-   public reloj()
+   public Reloj()
    {
 	   this.tiempo = 0;
 	  System.out.print("reloj construido");

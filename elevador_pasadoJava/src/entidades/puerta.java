@@ -2,10 +2,10 @@ package entidades;
  
 import java.util.*;
 
-public class puerta
+public class Puerta
 {
    // constructor
-   public puerta()
+   public Puerta()
    {
 	   this.abierta = false;
 	  System.out.print("puerta construida");
@@ -17,7 +17,7 @@ public class puerta
 
 
    // abre la puerta
-   public void abrePuerta(persona ptrPasajero, persona ptrSiguientePasajero, piso pisoActual, elevador elevador)
+   public void abrePuerta(Persona ptrPasajero, Persona ptrSiguientePasajero, Piso pisoActual, Elevador elevador)
    {
 	  if (!abierta)
 	  { // si la puerta no est� abierta, abre la puerta
@@ -48,7 +48,7 @@ public class puerta
    } // fin de la funci�n abrePuerta
 
    // cierra la puerta
-   public final void cierraPuerta(piso pisoActual)
+   public final void cierraPuerta(Piso pisoActual)
    {
 	  if (abierta)
 	  { // si la puerta est� abierta, la cierra

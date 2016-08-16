@@ -3,7 +3,7 @@ package entidades;
 
 import java.util.*;
 
-public class persona
+public class Persona
 {
 	public  int cuentaPersonas = 0; // n�mero total de gente
 	public int ID; // N�mero de ID �nico de la persona
@@ -11,10 +11,10 @@ public class persona
 
    // constructor
 
-    public persona() {
+    public Persona() {
     }
         
-public persona(int pisoDestino)
+public Persona(int pisoDestino)
    {
 	   this.ID = ++cuentaPersonas;
 	   this.pisoDestino = pisoDestino;
@@ -44,7 +44,7 @@ public persona(int pisoDestino)
 
 
 //piso piso = new piso();   // la persona entra al piso
-   public  void entraAlPiso(piso piso)
+   public  void entraAlPiso(Piso piso)
    {
 
        // notifica al piso que viene la persona
@@ -66,7 +66,7 @@ public persona(int pisoDestino)
    } // fin de la funci�n entraAlPiso
 
    // la persona entra al elevador
-   public  void entraElevador(elevador elevador, piso piso)
+   public  void entraElevador(Elevador elevador, Piso piso)
    {
 	  piso.personaAbordaElevador(); // la persona abandona el piso
 
@@ -83,7 +83,7 @@ public persona(int pisoDestino)
 
    // la persona sale del elevador
 //ORIGINAL LINE: void saleElevador(const Piso &piso, Elevador &elevador) const
-   public final void saleElevador(piso piso, elevador elevador)
+   public final void saleElevador(Piso piso, Elevador elevador)
    {
 	  System.out.print("persona ");
 	  System.out.print(ID);

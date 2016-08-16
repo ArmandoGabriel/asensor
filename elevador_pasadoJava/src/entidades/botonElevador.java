@@ -1,51 +1,40 @@
-
 package entidades;
 
 import java.util.*;
 
+public class BotonElevador {
 
-public class botonElevador
-{
+    public boolean presionado; // estado del bot�n
 
-   public boolean presionado; // estado del bot�n
+    // referencia al elevador que contiene este bot�n
+    Elevador refElevador = new Elevador();
 
-   // referencia al elevador que contiene este bot�n
-    elevador refElevador = new elevador();
-
-    public botonElevador() {
+    public BotonElevador() {
     }
 
-   // constructor
-   public botonElevador(elevador manipulaElevador)
-   {
-	   this.presionado = false;
-	   this.refElevador =manipulaElevador;
-	  System.out.print("boton del elevador construido");
-	  System.out.print("\n");
+    // constructor
+    public BotonElevador(Elevador manipulaElevador) {
+        this.presionado = false;
+        this.refElevador = manipulaElevador;
+        System.out.print("boton del elevador construido");
+        System.out.print("\n");
 
-   } // fin del constructor BotonElevador
+    } // fin del constructor BotonElevador
 
- 
+    // presiona el bot�n e indica al elevador que se prepare para abandonar el piso
+    public void presionaBoton() {
+        presionado = true;
+        System.out.print("el boton del elevador le indica al elevador que se prepare para partir");
+        System.out.print("\n");
+        refElevador.preparaParaPartir(true);
 
+    } // fin de la funci�n presionaBoton
 
-   // presiona el bot�n e indica al elevador que se prepare para abandonar el piso
-   public  void presionaBoton()
-   {
-	  presionado = true;
-	  System.out.print("el boton del elevador le indica al elevador que se prepare para partir");
-	  System.out.print("\n");
-	  refElevador.preparaParaPartir(true);
+    // restablece el bot�n
+    public void restableceBoton() {
+        presionado = false;
 
-   } // fin de la funci�n presionaBoton
-
-   // restablece el bot�n
-   public  void restableceBoton()
-   {
-	  presionado = false;
-
-   } // fin de la funci�n restableceBoton
-
-
+    } // fin de la funci�n restableceBoton
 
     public boolean isPresionado() {
         return presionado;
@@ -55,11 +44,11 @@ public class botonElevador
         this.presionado = presionado;
     }
 
-    public elevador getRefElevador() {
+    public Elevador getRefElevador() {
         return refElevador;
     }
 
-    public void setRefElevador(elevador refElevador) {
+    public void setRefElevador(Elevador refElevador) {
         this.refElevador = refElevador;
     }
 } // fin de la clase BotonElevador

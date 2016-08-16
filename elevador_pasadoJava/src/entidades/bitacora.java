@@ -7,22 +7,22 @@ import java.util.*;
 import java.util.Random;
 
 
-public class bitacora
+public class Bitacora
 {
     int tiempoActualDeReloj;
 
-    piso refPiso1 = new piso();
-    piso refPiso2= new piso();
+    Piso refPiso1 = new Piso();
+    Piso refPiso2= new Piso();
 
     int tiempoLlegadaPiso1;
     int tiempoLlegadaPiso2;
 
-    public bitacora() {
+    public Bitacora() {
     }
 
     
      // constructor
-   public bitacora(piso primerPiso, piso segundoPiso)
+   public Bitacora(Piso primerPiso, Piso segundoPiso)
    {
 	   this.tiempoActualDeReloj = 0;
 	   this.refPiso1 = primerPiso;
@@ -56,7 +56,7 @@ public class bitacora
 	
 
    // programa llegada al piso
-   public void programaTiempo(piso piso)
+   public void programaTiempo(Piso piso)
    {
 	  int numeroPiso = piso.obtieneNumero();
 	  int tiempoLlegada = tiempoActualDeReloj + (5 + RandomNumbers.nextNumber() % 16);
@@ -81,7 +81,7 @@ public class bitacora
    // tiempo de retardo de llegada a piso
 
    // reprograma la llegada al piso
-   public void tiempoRetardo(piso piso)
+   public void tiempoRetardo(Piso piso)
    {
 	  int numeroPiso = piso.obtieneNumero();
 
@@ -99,12 +99,12 @@ public class bitacora
    // crea nueva persona; la coloca en el piso
 
    // crea una nueva persona y la coloca en un piso espec�fico
-   public void creaNuevaPersona(piso piso)
+   public void creaNuevaPersona(Piso piso)
    {
 	  int pisoDestino = piso.obtieneNumero() == piso.PISO1 ? piso.PISO2 : piso.PISO1;
 
 	  // crea una nueva persona
-	  persona ptrNuevaPersona = new persona(pisoDestino);
+	  Persona ptrNuevaPersona = new Persona(pisoDestino);
 
 	  System.out.print("bitacora crea una persona ");
 	  System.out.print(ptrNuevaPersona.obtieneID());
@@ -120,7 +120,7 @@ public class bitacora
    // manipulador de llegada de la persona a un piso
 
    // manipula las llegadas a un piso espec�fico
-   public void manipulaLlegadas(piso piso, int tiempo)
+   public void manipulaLlegadas(Piso piso, int tiempo)
    {
 	  int numeroPiso = piso.obtieneNumero();
 
@@ -156,19 +156,19 @@ public class bitacora
         this.tiempoActualDeReloj = tiempoActualDeReloj;
     }
 
-    public piso getRefPiso1() {
+    public Piso getRefPiso1() {
         return refPiso1;
     }
 
-    public void setRefPiso1(piso refPiso1) {
+    public void setRefPiso1(Piso refPiso1) {
         this.refPiso1 = refPiso1;
     }
 
-    public piso getRefPiso2() {
+    public Piso getRefPiso2() {
         return refPiso2;
     }
 
-    public void setRefPiso2(piso refPiso2) {
+    public void setRefPiso2(Piso refPiso2) {
         this.refPiso2 = refPiso2;
     }
 

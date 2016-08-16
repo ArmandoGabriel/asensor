@@ -7,22 +7,20 @@ using std::cin;
 using std::endl;
 
 #include "edificio.h"  // Definición de la clase Edificio
-
+System.out.println("paso ");
 // constructor
-Edificio::Edificio() 
-   : piso1( Piso::PISO1, elevador ), 
-     piso2( Piso::PISO2, elevador ),
-     elevador( piso1, piso2 ), 
-     bitacora( piso1, piso2 )
-{ 
-   cout << "edificio construido" << endl; 
-
+Edificio::Edificio():
+    piso1( Piso::PISO1, elevador ),
+    piso2( Piso::PISO2, elevador ),
+    elevador( piso1, piso2 ),
+    bitacora( piso1, piso2 ){
+   cout << "edificio construido" << endl;
 } // fin del constructor Edificio
 
 // destructor
-Edificio::~Edificio() 
-{ 
-   cout << "edificio destruido" << endl; 
+Edificio::~Edificio()
+{
+   cout << "edificio destruido" << endl;
 
 } // fin del destructor ~Edificio
 
@@ -32,10 +30,10 @@ void Edificio::ejecutaSimulador( int tiempoTotal )
    int tiempoActual = 0;
 
    while ( tiempoActual < tiempoTotal ) {
-      reloj.marcaSeg();                      // incrementa el tiempo  
+      reloj.marcaSeg();                      // incrementa el tiempo
       tiempoActual = reloj.obtieneTiempo();  // obtiene tiempo nuevo
-      cout << "TIEMPO: " << tiempoActual << endl;   
-      
+      cout << "TIEMPO: " << tiempoActual << endl;
+
       // procesa la llegada de personas para tiempoActual
       bitacora.tiempoProceso( tiempoActual );
 
@@ -43,7 +41,7 @@ void Edificio::ejecutaSimulador( int tiempoTotal )
       elevador.tiempoProceso( tiempoActual );
 
       // espera a que se digite una tecla, de manera que el usuario vea la salida
-      cin.get(); 
+      cin.get();
 
    } // fin de while
 
