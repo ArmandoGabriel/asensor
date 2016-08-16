@@ -2,61 +2,45 @@ package entidades;
 
 import java.util.*;
 
-public class BotonPiso
-{
-       public  int numeroPiso; // n�mero de piso del bot�n
-   public boolean presionado; // estado del bot�n
+public class BotonPiso {
 
-   // referencia al elevador utilizado para llamar
-   // al elevado al piso
-    Elevador refElevador  = new Elevador();
+    public int numeroPiso; // n�mero de piso del bot�n
+    public boolean presionado; // estado del bot�n
+
+    // referencia al elevador utilizado para llamar
+    // al elevado al piso
+    private Elevador refElevador = new Elevador();
 
     public BotonPiso() {
     }
 
 // constructor
-    
-	public BotonPiso(int piso, Elevador manipulaElevador)
-	{
-		this.numeroPiso = piso;
-		this.presionado = false;
-		this.refElevador = manipulaElevador;
-	   System.out.print("boton del piso ");
-	   System.out.print(numeroPiso);
-	   System.out.print(" construido");
-	   System.out.print("\n");
+    public BotonPiso(int piso, Elevador manipulaElevador) {
+        numeroPiso = piso;
+        presionado = false;
+        refElevador = manipulaElevador;
+        System.out.print("boton del piso "+numeroPiso+" construido\n");
 
-	} // fin del constructor BotonPiso
+    } // fin del constructor BotonPiso
 
+    // presiona el boton
+    public void presionaBoton() {
+        presionado = true;
+        System.out.print("boton del piso "+numeroPiso+" llama al elevador\n");
 
+        // llama al elevador a este piso
+        refElevador.llamaElevador(numeroPiso);
 
+    } //fin de la funci�n presionaBoton
 
-   // presiona el boton
-   public  void presionaBoton()
-   {
-	  presionado = true;
-	  System.out.print("boton del piso ");
-	  System.out.print(numeroPiso);
-	  System.out.print(" llama al elevador");
-	  System.out.print("\n");
+    // restablece el bot�n
+    public void restableceBoton() {
+        presionado = false;
 
-	  // llama al elevador a este piso
-	  refElevador.llamaElevador(numeroPiso);
-
-   } //fin de la funci�n presionaBoton
-
-   // restablece el bot�n
-   public void restableceBoton()
-   {
-	  presionado = false;
-
-   } // fin de la funci�n restableceBoton
+    } // fin de la funci�n restableceBoton
 
 ///////////////////////////////////////////
-   
-   
-   ///////////////////////////////////////
-
+    ///////////////////////////////////////
     public int getNumeroPiso() {
         return numeroPiso;
     }

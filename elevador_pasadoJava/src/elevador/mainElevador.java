@@ -5,7 +5,7 @@ import java.util.*;
 
 import java.io.*;
 
-public class mainElevador {
+public class MainElevador {
 
     public static void main(String[] args) throws IOException {
 

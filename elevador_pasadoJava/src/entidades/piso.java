@@ -5,27 +5,27 @@ import java.util.*;
 public class Piso {
 
     ////////////////////////publics////////////////////////
-    public static int PISO1 = 1;
-    public static int PISO2 = 2;
+    public static final int PISO1 = 1;
+    public static final int PISO2 = 2;
     public BotonPiso botonPiso;
     ////////////////////////privates////////////////////////
-    private static int numeroPiso; // los n�meros de piso
-    public Elevador refElevador; // referencia al elevador
-    Persona ptrOcupante;// = new Persona(); // apuntador a la persona en el piso
-    Luz luz;// = new Luz(); // objeto luz
+    private int numeroPiso; //final?
+    private Elevador refElevador; // referencia al elevador
+    private Persona ptrOcupante;// = new Persona(); // apuntador a la persona en el piso
+    private Luz luz;// = new Luz(); // objeto luz
 
     public Piso() {
     }
 
     // constructor
     public Piso(int numero, Elevador manipulaElevador) {//HASTA AQUI REVISE GABRIEL
-
+        numeroPiso = numero; // los n�meros de piso
         botonPiso = new BotonPiso(numero, manipulaElevador);
-        numeroPiso = numero;
-        refElevador = new Elevador(manipulaElevador);
-        ptrOcupante = new Persona(0);//numeroPiso);
+
+        refElevador = manipulaElevador;
+        ptrOcupante = null;//numeroPiso);
         luz = new Luz(numeroPiso);
-        
+
         System.out.print("piso " + numeroPiso + " construido\n");
 
     } // fin del constructor Piso
@@ -49,11 +49,8 @@ public class Piso {
 
     // notifica al piso que el elevador lleg�
     public Persona llegaElevador() {
-        botonPiso = new BotonPiso();
-        System.out.print("piso ");
-        System.out.print(numeroPiso);
-        System.out.print(" restablece su boton");
-        System.out.print("\n");
+        //botonPiso = new BotonPiso();
+        System.out.print("piso "+numeroPiso+" restablece su boton\n");
 
         botonPiso.restableceBoton();
         luz.enciende();
@@ -73,23 +70,16 @@ public class Piso {
         ptrOcupante = null; // la persona ya no se encuentra en el piso
 
     } // fin de la funci�n personaAbordaElevador
-
-////////////////////////////////////////////////////////////////////
-    //////////////////////////////////////////////////////////////////
-    public static int getPISO1() {
-        return PISO1;
+    
+    ///////////////////////////////////////////////////
+    //////////Getters y Setters///////////
+    
+    public BotonPiso getBotonPiso() {
+        return botonPiso;
     }
 
-    public static void setPISO1(int PISO1) {
-        Piso.PISO1 = PISO1;
-    }
-
-    public static int getPISO2() {
-        return PISO2;
-    }
-
-    public static void setPISO2(int PISO2) {
-        Piso.PISO2 = PISO2;
+    public void setBotonPiso(BotonPiso botonPiso) {
+        this.botonPiso = botonPiso;
     }
 
     public int getNumeroPiso() {

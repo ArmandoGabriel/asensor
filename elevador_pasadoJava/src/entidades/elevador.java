@@ -7,29 +7,31 @@ public class Elevador {
     // constantes est�ticas que representan el tiempo requerido para viajar
     // entre los pisos y las direcciones del elevador
 
-    public final int TIEMPO_VIAJE_ELEVADOR = 5;
-    public final int ARRIBA = 0;
-    public final int ABAJO = 1;
+    public BotonElevador botonElevador;
+    
+    private static final int TIEMPO_VIAJE_ELEVADOR = 5;
+    private static final int ARRIBA = 0;
+    private static final int ABAJO = 1;
 
     // datos miembros
-    public int tiempoActualRelojDelEdificio; // tiempo actual
-    public boolean enMovimiento; // estado del elevador
-    public int direccion; // direcci�n actual
-    public int pisoActual; // ubicaci�n actual
-    public int tiempoLlegada; // tiempo de llegada al piso
-    public boolean piso1NecesitaServicio; // bandera de servicio del piso1
-    public boolean piso2NecesitaServicio; // bandera de servicio del piso1
+    private int tiempoActualRelojDelEdificio; // tiempo actual
+    private boolean enMovimiento; // estado del elevador
+    private int direccion; // direcci�n actual
+    private int pisoActual; // ubicaci�n actual
+    private int tiempoLlegada; // tiempo de llegada al piso
+    private boolean piso1NecesitaServicio; // bandera de servicio del piso1
+    private boolean piso2NecesitaServicio; // bandera de servicio del piso1
 
-    Piso refPiso1 = new Piso(); // referencia al piso 1
-    Piso refPiso2 = new Piso(); // referencia al piso 2
+    private Piso refPiso1 = new Piso(); // referencia al piso 1
+    private Piso refPiso2 = new Piso(); // referencia al piso 2
 //botonElevador botonElevador = new botonElevador ();
-    Persona ptrPasajero = new Persona();
+    private Persona ptrPasajero = new Persona();
 
-    Puerta puerta = new Puerta(); // objeto puerta
-    Campana campana = new Campana(); // objeto campana
+    private Puerta puerta = new Puerta(); // objeto puerta
+    private Campana campana = new Campana(); // objeto campana
     //  botonElevador botonElevador = new botonElevador();
 // constructor
-    BotonElevador botonElevador;
+    
 
     public Elevador() {
 
