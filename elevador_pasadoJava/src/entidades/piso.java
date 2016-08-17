@@ -7,7 +7,7 @@ public class Piso {
     ////////////////////////publics////////////////////////
     public static final int PISO1 = 1;
     public static final int PISO2 = 2;
-    public BotonPiso botonPiso;
+    public BotonPiso botonPiso = new BotonPiso();
     ////////////////////////privates////////////////////////
     private int numeroPiso; //final?
     private Elevador refElevador; // referencia al elevador
@@ -23,7 +23,7 @@ public class Piso {
         botonPiso = new BotonPiso(numero, manipulaElevador);
 
         refElevador = manipulaElevador;
-        ptrOcupante = null;//numeroPiso);
+        ptrOcupante = new Persona(numeroPiso);
         luz = new Luz(numeroPiso);
 
         System.out.print("piso " + numeroPiso + " construido\n");
@@ -31,11 +31,10 @@ public class Piso {
     } // fin del constructor Piso
 
     public boolean estaOcupado() {
-        return (ptrOcupante != null);
-
+        return (ptrOcupante.getID() != 0);
     }
 
-    public final int obtieneNumero() {
+    public int obtieneNumero() {
         return numeroPiso;
 
     } // fin de la funci�n obtieneNumero
@@ -67,7 +66,7 @@ public class Piso {
 
     // notifica al piso que la persona se va
     public void personaAbordaElevador() {
-        ptrOcupante = null; // la persona ya no se encuentra en el piso
+        ptrOcupante.setID(0); // la persona ya no se encuentra en el piso
 
     } // fin de la funci�n personaAbordaElevador
     

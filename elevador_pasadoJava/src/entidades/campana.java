@@ -13,11 +13,8 @@ public class Campana
 	  System.out.print("\n");
 
    } // fin del constructor Campana
-
-
-
    
-   public  void suenaCampana()
+   public void suenaCampana()
    {
 	  System.out.print("el elevador suena la campana");
 	  System.out.print("\n");

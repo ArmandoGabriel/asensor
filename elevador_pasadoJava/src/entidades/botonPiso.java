@@ -4,13 +4,13 @@ import java.util.*;
 
 public class BotonPiso {
 
-    public int numeroPiso; // n�mero de piso del bot�n
-    public boolean presionado; // estado del bot�n
+    private int numeroPiso; // n�mero de piso del bot�n
+    private boolean presionado; // estado del bot�n
 
     // referencia al elevador utilizado para llamar
     // al elevado al piso
     private Elevador refElevador = new Elevador();
-
+    
     public BotonPiso() {
     }
 
@@ -18,7 +18,7 @@ public class BotonPiso {
     public BotonPiso(int piso, Elevador manipulaElevador) {
         numeroPiso = piso;
         presionado = false;
-        refElevador = manipulaElevador;
+        this.refElevador = manipulaElevador;
         System.out.print("boton del piso "+numeroPiso+" construido\n");
 
     } // fin del constructor BotonPiso
@@ -29,6 +29,7 @@ public class BotonPiso {
         System.out.print("boton del piso "+numeroPiso+" llama al elevador\n");
 
         // llama al elevador a este piso
+
         refElevador.llamaElevador(numeroPiso);
 
     } //fin de la funci�n presionaBoton
@@ -40,7 +41,8 @@ public class BotonPiso {
     } // fin de la funci�n restableceBoton
 
 ///////////////////////////////////////////
-    ///////////////////////////////////////
+    
+
     public int getNumeroPiso() {
         return numeroPiso;
     }
@@ -64,5 +66,4 @@ public class BotonPiso {
     public void setRefElevador(Elevador refElevador) {
         this.refElevador = refElevador;
     }
-
 } // fin de la clase botonPiso

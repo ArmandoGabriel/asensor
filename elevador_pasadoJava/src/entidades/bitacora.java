@@ -1,153 +1,120 @@
-
 package entidades;
-
 
 import elevador.RandomNumbers;
 import java.util.*;
 import java.util.Random;
 
+public class Bitacora {
 
-public class Bitacora
-{
-    int tiempoActualDeReloj;
+    private int tiempoActualDeReloj;
 
-    Piso refPiso1 = new Piso();
-    Piso refPiso2= new Piso();
+    private Piso refPiso1;// = new Piso();
+    private Piso refPiso2;//= new Piso();
 
-    int tiempoLlegadaPiso1;
-    int tiempoLlegadaPiso2;
+    private int tiempoLlegadaPiso1;
+    private int tiempoLlegadaPiso2;
 
     public Bitacora() {
     }
 
-    
-     // constructor
-   public Bitacora(Piso primerPiso, Piso segundoPiso)
-   {
-	   this.tiempoActualDeReloj = 0;
-	   this.refPiso1 = primerPiso;
-	   this.refPiso2= segundoPiso;
-	  RandomNumbers.Seed(); // semilla del generador de n�meros aleatorios
-	  System.out.print("bitacora construida");
-	  System.out.print("\n");
+    // constructor
+    public Bitacora(Piso primerPiso, Piso segundoPiso) {
+        tiempoActualDeReloj = 0;
+        refPiso1 = primerPiso;
+        refPiso2 = segundoPiso;
+        RandomNumbers.Seed(); // semilla del generador de n�meros aleatorios
+        System.out.print("bitacora construida\n");
 
-	  // programa las primeras llegadas para los pisos  1 y 2
-	  programaTiempo(refPiso1);
-	  programaTiempo(refPiso2);
+        // programa las primeras llegadas para los pisos  1 y 2
+        programaTiempo(refPiso1);
+        programaTiempo(refPiso2);
 
-   } // fin del constructor Bitacora
+    } // fin del constructor Bitacora
 
-   // destructor
-  
+    // destructor
+    // proporciona el tiempo a la bit�cora
+    public void tiempoProceso(int tiempo) {
+        tiempoActualDeReloj = tiempo; // registra el tiempo
 
-   // proporciona el tiempo a la bit�cora
-   public final void tiempoProceso(int tiempo)
-   {
-	  tiempoActualDeReloj = tiempo; // registra el tiempo
+        // manipula la llegada al piso 1
+        manipulaLlegadas(refPiso1, tiempoActualDeReloj);
 
-	  // manipula la llegada al piso 1
-	  manipulaLlegadas(refPiso1, tiempoActualDeReloj);
+        // manipula la llegada al piso 2
+        manipulaLlegadas(refPiso2, tiempoActualDeReloj);
 
-	  // manipula la llegada al piso 2
-	  manipulaLlegadas(refPiso2, tiempoActualDeReloj);
+    } // fin de la funci�n tiempoProceso
 
-   } // fin de la funci�n tiempoProceso
+    // programa llegada al piso
+    private void programaTiempo(Piso piso) {
+        int numeroPiso = piso.obtieneNumero();
 
-	
+        int randomico = (5 + Math.abs(RandomNumbers.nextNumber() % 16));
+        int tiempoLlegada = tiempoActualDeReloj + randomico;
 
-   // programa llegada al piso
-   public void programaTiempo(Piso piso)
-   {
-	  int numeroPiso = piso.obtieneNumero();
-	  int tiempoLlegada = tiempoActualDeReloj + (5 + RandomNumbers.nextNumber() % 16);
+        if (numeroPiso == Piso.PISO1) {
+            tiempoLlegadaPiso1 = tiempoLlegada;
+        } else {
+            tiempoLlegadaPiso2 = tiempoLlegada;
+        }
 
-	  if(numeroPiso== piso.PISO1){
-              tiempoLlegadaPiso1 = tiempoLlegada;
-          }
-          else{
-                   tiempoLlegadaPiso2 = tiempoLlegada;
-          }
-              
+        System.out.print("(la bitacora programa a la siguiente persona para el piso "
+                + numeroPiso + " en tiempo " + tiempoLlegada + ')' + "\n");
 
-	  System.out.print("(la bitacora programa a la siguiente persona para el piso ");
-	  System.out.print(numeroPiso);
-	  System.out.print(" en tiempo ");
-	  System.out.print(tiempoLlegada);
-	  System.out.print(')');
-	  System.out.print("\n");
+    } // fin de la funci�n programaTiempo
 
-   } // fin de la funci�n programaTiempo
+    // tiempo de retardo de llegada a piso
+    // reprograma la llegada al piso
+    private void tiempoRetardo(Piso piso) {
+        int numeroPiso = piso.obtieneNumero();
 
-   // tiempo de retardo de llegada a piso
+        int tiempoLlegada = (numeroPiso == Piso.PISO1) ? ++tiempoLlegadaPiso1 : ++tiempoLlegadaPiso2;
 
-   // reprograma la llegada al piso
-   public void tiempoRetardo(Piso piso)
-   {
-	  int numeroPiso = piso.obtieneNumero();
+        System.out.print("(la bitacora retarda a la siguiente persona para el piso "
+                + numeroPiso + " hasta el tiempo " + tiempoLlegada + ')' + "\n");
 
-	  int tiempoLlegada = (numeroPiso == piso.PISO1) ?++tiempoLlegadaPiso1 :++tiempoLlegadaPiso2;
+    } // fin de la funci�n tiempoRetardo
 
-	  System.out.print("(la bitacora retarda a la siguiente persona para el piso ");
-	  System.out.print(numeroPiso);
-	  System.out.print(" hasta el tiempo ");
-	  System.out.print(tiempoLlegada);
-	  System.out.print(')');
-	  System.out.print("\n");
+    // crea nueva persona; la coloca en el piso
+    // crea una nueva persona y la coloca en un piso espec�fico
+    private void creaNuevaPersona(Piso piso) {
+        int pisoDestino = piso.obtieneNumero() == Piso.PISO1 ? Piso.PISO2 : Piso.PISO1;
 
-   } // fin de la funci�n tiempoRetardo
+        // crea una nueva persona
+        Persona ptrNuevaPersona = new Persona(pisoDestino);
 
-   // crea nueva persona; la coloca en el piso
+        System.out.print("bitacora crea una persona "
+                + ptrNuevaPersona.obtieneID() + "\n");
 
-   // crea una nueva persona y la coloca en un piso espec�fico
-   public void creaNuevaPersona(Piso piso)
-   {
-	  int pisoDestino = piso.obtieneNumero() == piso.PISO1 ? piso.PISO2 : piso.PISO1;
+        // coloca a la persona en el piso apropiado
+        ptrNuevaPersona.entraAlPiso(piso);
 
-	  // crea una nueva persona
-	  Persona ptrNuevaPersona = new Persona(pisoDestino);
+        programaTiempo(piso); // programa la siguiente llegada
 
-	  System.out.print("bitacora crea una persona ");
-	  System.out.print(ptrNuevaPersona.obtieneID());
-	  System.out.print("\n");
+    } // fin de la funci�n creaNuevaPersona
 
-	  // coloca a la persona en el piso apropiado
-	  ptrNuevaPersona.entraAlPiso(piso);
+    // manipulador de llegada de la persona a un piso
+    // manipula las llegadas a un piso espec�fico
+    private void manipulaLlegadas(Piso piso, int tiempo) {
+        int numeroPiso = piso.obtieneNumero();
 
-	  programaTiempo(piso); // programa la siguiente llegada
+        int tiempoLlegada = (numeroPiso == Piso.PISO1) ? tiempoLlegadaPiso1 : tiempoLlegadaPiso2;
 
-   } // fin de la funci�n creaNuevaPersona
+        if (tiempoLlegada == tiempo) {
 
-   // manipulador de llegada de la persona a un piso
+            if (piso.estaOcupado()) // si el piso est� ocupado,
+            {
+                tiempoRetardo(piso); // retarda la llegada
+            } else // de lo contrario,
+            {
+                creaNuevaPersona(piso); // crea una nueva persona
+            }
 
-   // manipula las llegadas a un piso espec�fico
-   public void manipulaLlegadas(Piso piso, int tiempo)
-   {
-	  int numeroPiso = piso.obtieneNumero();
+        } // fin del if externo
 
-	  int tiempoLlegada = (numeroPiso == piso.PISO1) ? tiempoLlegadaPiso1 : tiempoLlegadaPiso2;
-
-	  if (tiempoLlegada == tiempo)
-	  {
-
-		 if (piso.estaOcupado()) // si el piso est� ocupado,
-		 {
-			tiempoRetardo(piso); // retarda la llegada
-		 }
-
-		 else // de lo contrario,
-		 {
-			creaNuevaPersona(piso); // crea una nueva persona
-		 }
-
-	  } // fin del if externo
-
-   } // fin de la funci�n manipulaArribos
+    } // fin de la funci�n manipulaArribos
 
 ///////////////////////////////////////////////////////////////////
-   
-   
-   ///////////////////////////////////////////////////////////////
-
+    ///////////////////////////////////////////////////////////////
     public int getTiempoActualDeReloj() {
         return tiempoActualDeReloj;
     }

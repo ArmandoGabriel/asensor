@@ -7,7 +7,7 @@ using std::cin;
 using std::endl;
 
 #include "edificio.h"  // Definición de la clase Edificio
-System.out.println("paso ");
+
 // constructor
 Edificio::Edificio():
     piso1( Piso::PISO1, elevador ),

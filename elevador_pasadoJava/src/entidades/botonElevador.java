@@ -4,20 +4,20 @@ import java.util.*;
 
 public class BotonElevador {
 
-    public boolean presionado; // estado del bot�n
+    private boolean presionado; // estado del bot�n
 
     // referencia al elevador que contiene este bot�n
-    Elevador refElevador = new Elevador();
+    private Elevador refElevador = new Elevador();
+
 
     public BotonElevador() {
     }
 
     // constructor
     public BotonElevador(Elevador manipulaElevador) {
-        this.presionado = false;
-        this.refElevador = manipulaElevador;
-        System.out.print("boton del elevador construido");
-        System.out.print("\n");
+        presionado = false;
+        refElevador = manipulaElevador;
+        System.out.print("boton del elevador construido\n");
 
     } // fin del constructor BotonElevador
 
@@ -51,4 +51,5 @@ public class BotonElevador {
     public void setRefElevador(Elevador refElevador) {
         this.refElevador = refElevador;
     }
+    
 } // fin de la clase BotonElevador

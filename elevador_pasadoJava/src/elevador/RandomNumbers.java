@@ -23,7 +23,7 @@ public final class RandomNumbers {
     }
 
     public static void Seed() {
-        r = new Random();
+        r = new Random(System.currentTimeMillis());
     }
 
     public static void Seed(int seed) {

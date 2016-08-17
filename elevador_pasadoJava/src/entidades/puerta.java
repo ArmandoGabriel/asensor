@@ -4,18 +4,16 @@ import java.util.*;
 
 public class Puerta
 {
+    private boolean abierta;
    // constructor
    public Puerta()
    {
-	   this.abierta = false;
+        this.abierta = false;
 	  System.out.print("puerta construida");
 	  System.out.print("\n");
 
    } // fin del constructor Puerta
-
-
-
-
+   
    // abre la puerta
    public void abrePuerta(Persona ptrPasajero, Persona ptrSiguientePasajero, Piso pisoActual, Elevador elevador)
    {
@@ -32,15 +30,13 @@ public class Puerta
 		 {
 			ptrPasajero.saleElevador(pisoActual, elevador);
 			if (ptrPasajero != null)
-				ptrPasajero.dispose();// el pasajero abandona el elevador
-
+				ptrPasajero.dispose();
 		 } // fin de if
 
 		 // si el pasajero est� esperando el elevador
 		 // le indica que entre
 		 if (ptrSiguientePasajero != null)
-		 {
-			ptrSiguientePasajero.entraElevador(elevador, pisoActual);
+		 {ptrSiguientePasajero.entraElevador(elevador, pisoActual);
 		 }
 
 	  } // fin del if externo
@@ -48,7 +44,7 @@ public class Puerta
    } // fin de la funci�n abrePuerta
 
    // cierra la puerta
-   public final void cierraPuerta(Piso pisoActual)
+   public void cierraPuerta(Piso pisoActual)
    {
 	  if (abierta)
 	  { // si la puerta est� abierta, la cierra
@@ -61,7 +57,7 @@ public class Puerta
 
    } // fin de la funci�n cierraPuerta
 
-   public boolean abierta; // abierto o cerrado
+    // abierto o cerrado
 
    ////////////////////////////////////////////////////////////////////////////
    

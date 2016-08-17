@@ -35,6 +35,10 @@ public class Edificio {
         reloj = new Reloj();
         while (tiempoActual < tiempoTotal) {
 
+            if(true)
+            {
+                System.err.println("punto");
+            }
             reloj.marcaSeg(); // incrementa el tiempo
             tiempoActual = reloj.obtieneTiempo(); // obtiene tiempo nuevo
             System.out.print("TIEMPO: " + tiempoActual + "\n");

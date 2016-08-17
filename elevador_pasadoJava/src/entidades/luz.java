@@ -1,68 +1,49 @@
- 
 package entidades;
 
 import java.util.*;
- 
-public class Luz
-{
-    
-   public boolean encendida; // verdadero si est� encendida; falso si est� apagada
-   public  int numeroPiso; // n�mero del piso que contiene la luz
 
-   // constructor
-   
-      public Luz(){
-          
-      }
-   public Luz(int numero)
-   {
-	   this.encendida = false;
-	   this.numeroPiso = numero;
-	  System.out.print("piso ");
-	  System.out.print(numeroPiso);
-	  System.out.print(" luz construida");
-	  System.out.print("\n");
+public class Luz {
 
-   } // fin del constructor Luz
+    private boolean encendida; // verdadero si est� encendida; falso si est� apagada
+    private int numeroPiso; // n�mero del piso que contiene la luz
 
+    // constructor
+    public Luz() {
 
+    }
 
-    
+    public Luz(int numero) {
+        encendida = false;
+        numeroPiso = numero;
+        System.out.print("piso " + numeroPiso + " luz construida\n");
 
+    } // fin del constructor Luz
 
-   // enciende la luz
-   public void enciende()
-   {
-	  if (!encendida)
-	  { // si la luz no est� encendida, la enciende
-		 encendida = true;
-		 System.out.print("piso ");
-		 System.out.print(numeroPiso);
-		 System.out.print(" se enciende la luz");
-		 System.out.print("\n");
+    // enciende la luz
+    public void enciende() {
+        if (!encendida) { // si la luz no est� encendida, la enciende
+            encendida = true;
+            System.out.print("piso " + numeroPiso
+                    + " se enciende la luz\n");
+        } // fin de if
 
-	  } // fin de if
+    } // fin de la funci�n enciende
 
-   } // fin de la funci�n enciende
+    // apaga la luz
+    public void apaga() {
+        if (encendida) { // si la luz est� encendida, la apaga
+            encendida = false;
+            System.out.print("piso ");
+            System.out.print(numeroPiso);
+            System.out.print(" se apaga la luz");
+            System.out.print("\n");
 
-   // apaga la luz
-   public void apaga()
-   {
-	  if (encendida)
-	  { // si la luz est� encendida, la apaga
-		 encendida = false;
-		 System.out.print("piso ");
-		 System.out.print(numeroPiso);
-		 System.out.print(" se apaga la luz");
-		 System.out.print("\n");
+        } // fin de if
 
-	  } // fin de if
+    } // fin de la funci�n apaga
 
-   } // fin de la funci�n apaga
-
-   ///////////////////////////////////////////////
-   /////////////////////////////////////////////
-
+    ///////////////////////////////////////////////
+    /////////////////////////////////////////////
     public boolean isEncendida() {
         return encendida;
     }
@@ -78,6 +59,5 @@ public class Luz
     public void setNumeroPiso(int numeroPiso) {
         this.numeroPiso = numeroPiso;
     }
-   
-   
+
 } // fin de la clase Luz
